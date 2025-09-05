@@ -60,20 +60,23 @@ public class TicketDAO {
 		String select = prop.getProperty("findAll");
 		try {
 			pstmt = conn.prepareStatement(select);
-			pstmt.setString(1, rset.getFlight());
-			pstmt.setDate(2, rset.getDepartureDate());
-			pstmt.setString(3, rset.getBoardingTime());
-			pstmt.setString(4, rset.getGate());
-			pstmt.setString(5, rset.getDestination());
-			
 			rset = pstmt.executeQuery();
 			
-		}catch (SQLException e) {
+			while(rset.next()) {
+				Ticket ticket = new Ticket(rset.getString("FLIGHT")
+						 				 , rset.getDate("DEPARTURE_DATE")
+						 				 , rset.getString("BOARDING_TIME")
+						 				 , rset.getString("GATE")
+						 				 , rset.getString("DESTINATION"));
+				tickets.add(ticket);
+			}
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		return rset;
+		return tickets;
 		
 	}
 	

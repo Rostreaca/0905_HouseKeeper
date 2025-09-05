@@ -22,8 +22,25 @@ VALUES
 	 , ? 
 	   )
  </entry>
+ 
+ <entry key="findAll">
+SELECT 
+  		 FLIGHT
+  	   , DEPARTURE_DATE
+  	   , BOARDING_TIME
+  	   , GATE
+  	   , DESTINATION 
+    FROM 
+    	 TB_TICKET 
+   ORDER 
+      BY 
+      	 DEPARTURE_DATE
+ </entry>
 
+      	 
+<entry key="">
 
+ </entry>
 
 
 
