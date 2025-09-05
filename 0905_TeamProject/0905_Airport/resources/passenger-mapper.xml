@@ -2,4 +2,21 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment>Passenger SQL for DBMS</comment>
+
+<entry key ="findAll">
+SELECT
+       PASS_ID
+     , PASS_NAME
+     , PASS_NO
+     , PASS_COUNTRY
+     , FLIGHT
+     , PHONE
+     , SEAT
+  FROM
+       TB_PASSENGER
+ ORDER
+    BY
+       PASS_ID DESC
+</entry>
+
 </properties>
