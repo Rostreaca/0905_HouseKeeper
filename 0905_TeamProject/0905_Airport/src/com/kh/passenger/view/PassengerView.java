@@ -6,9 +6,11 @@ import java.util.Scanner;
 import com.kh.passenger.controller.PassengerController;
 import com.kh.passenger.model.dto.PassengerDTO;
 import com.kh.passenger.model.vo.Passenger;
+import com.kh.ticket.view.TicketView;
 
 public class PassengerView {
 
+	private TicketView tv = new TicketView();
 	private Scanner sc = new Scanner(System.in);
 	private PassengerController pc = new PassengerController();
 	
@@ -34,7 +36,7 @@ public class PassengerView {
 				case 4: save();break;
 				case 5: update();break;
 				case 6: delete();break;
-				case 7: break;
+				case 7: tv.mainMenu();break;
 				case 9: System.out.println("프로그램 종료");return;
 				default: System.out.println("잘못된 번호 입력");
 			}
