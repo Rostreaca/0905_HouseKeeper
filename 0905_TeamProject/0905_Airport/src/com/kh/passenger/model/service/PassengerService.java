@@ -26,12 +26,12 @@ public class PassengerService {
 		return passengers;
 	}
 	
-	public Passenger findByFlight(String flight) {
-		Passenger pass = new PassengerDAO().findByFlight(conn,flight);
+	public List<Passenger> findByFlight(String flight) {
+		List<Passenger> passengers = new PassengerDAO().findByFlight(conn,flight);
 		
 		close(conn);
 		
-		return pass;
+		return passengers;
 	}
 	
 	public List<Passenger> findByKeyword(String keyword){
@@ -44,7 +44,9 @@ public class PassengerService {
 	
 	public int save(PassengerDTO pd) {
 		int result = new PassengerDAO().save(conn,pd);
-		commit(conn);
+		if(result > 0) {
+			commit(conn);			
+		}
 		close(conn);
 		
 		return result;
@@ -52,7 +54,18 @@ public class PassengerService {
 	
 	public int update(PassengerDTO pd) {
 		int result = new PassengerDAO().update(conn,pd);
-		commit(conn);
+		if(result > 0) {
+			commit(conn);			
+		}
+		close(conn);
+		return result;
+	}
+	
+	public int delete(int passId) {
+		int result = new PassengerDAO().delete(conn,passId);
+		if(result >0) {
+			commit(conn);
+		}
 		close(conn);
 		return result;
 	}

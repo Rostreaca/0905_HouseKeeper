@@ -16,11 +16,11 @@ public class PassengerController {
 		
 	}
 	
-	public Passenger findByFlight(String flight) {
+	public List<Passenger> findByFlight(String flight) {
 		
-		Passenger pass = new PassengerService().findByFlight(flight);
+		List<Passenger> passengers = new PassengerService().findByFlight(flight);
 		
-		return pass;
+		return passengers;
 	}
 	
 	public List<Passenger> findByKeyword(String keyword){
@@ -38,6 +38,12 @@ public class PassengerController {
 	}
 	public int update(PassengerDTO pd) {
 		int result = new PassengerService().update(pd);
+		
+		return result;
+	}
+	
+	public int delete(int passId) {
+		int result = new PassengerService().delete(passId);
 		
 		return result;
 	}

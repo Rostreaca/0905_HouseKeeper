@@ -14,6 +14,8 @@ SELECT
      , SEAT
   FROM
        TB_PASSENGER
+ WHERE
+       CANCLED_YN = 'N'
  ORDER
     BY
        PASS_ID DESC
@@ -31,6 +33,8 @@ SELECT
        TB_PASSENGER
  WHERE
        FLIGHT = ?
+   AND
+       CANCLED_YN = 'N'
  ORDER
     BY
        PASS_ID DESC
@@ -50,6 +54,8 @@ SELECT
        TB_PASSENGER
  WHERE
        PASS_NAME LIKE '%'||?||'%'
+   AND
+       CANCLED_YN = 'N'
  ORDER
     BY
        PASS_ID DESC
@@ -90,4 +96,15 @@ UPDATE
        PASS_NAME = ?
 
 </entry>
+<entry key="delete">
+UPDATE
+       TB_PASSENGER
+   SET
+       CANCLED_YN = 'Y'
+ WHERE
+       PASS_ID = ?
+   AND
+       CANCLED_YN = 'N'
+</entry>
+
 </properties>

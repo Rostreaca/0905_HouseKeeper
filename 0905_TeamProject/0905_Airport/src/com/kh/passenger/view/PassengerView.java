@@ -33,7 +33,7 @@ public class PassengerView {
 				case 3: findByKeyword();break;
 				case 4: save();break;
 				case 5: update();break;
-				case 6: break;
+				case 6: delete();break;
 				case 7: break;
 				case 9: System.out.println("프로그램 종료");return;
 				default: System.out.println("잘못된 번호 입력");
@@ -68,16 +68,19 @@ public class PassengerView {
 		System.out.print("조회할 항공편을 입력해주십시오 > ");
 		String flight = sc.nextLine();
 		
-		Passenger pass = pc.findByFlight(flight);
+		List<Passenger> passengers = pc.findByFlight(flight);
 		
-		if(pass != null) {
+		if(!passengers.isEmpty()) {
 			System.out.println(flight+"항공편 승객입니다.");
-			System.out.println(" 승객 번호 : "+pass.getPassId());
-			System.out.println(" 이름 : "+pass.getPassName());
-			System.out.println(" 주민등록번호 : "+pass.getPassNo());
-			System.out.println(" 국적 : "+pass.getPassCountry());
-			System.out.println(" 전화번호 : "+pass.getPhone());
-			System.out.println(" 좌석번호 : "+pass.getSeat());
+			for(Passenger pass : passengers) {
+				System.out.print(" 승객 번호 : "+pass.getPassId());
+				System.out.print(" 이름 : "+pass.getPassName());
+				System.out.print(" 주민등록번호 : "+pass.getPassNo());
+				System.out.print(" 국적 : "+pass.getPassCountry());
+				System.out.print(" 전화번호 : "+pass.getPhone());
+				System.out.print(" 좌석번호 : "+pass.getSeat());
+				System.out.println();
+			}
 		} else {
 			System.out.println("조회 결과 없음");
 		}
@@ -148,6 +151,21 @@ public class PassengerView {
 			System.out.println("정보 변경에 성공했습니다.");
 		} else {
 			System.out.println("정보 변경에 실패했습니다");
+		}
+		
+	}
+	private void delete() {
+		System.out.println("승객 정보를 삭제합니다.");
+		System.out.print("승객 번호를 입력해주십시오 : ");
+		int passId = sc.nextInt();
+		sc.nextLine();
+		
+		int result = pc.delete(passId);
+		
+		if(result > 0) {
+			System.out.println("정보 삭제에 성공했습니다. 안녕히가십시오.");
+		} else {
+			System.out.println("정보 삭제에 실패했습니다.");
 		}
 		
 	}

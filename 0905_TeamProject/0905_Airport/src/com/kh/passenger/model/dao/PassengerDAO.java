@@ -57,8 +57,8 @@ public class PassengerDAO {
 		return passengers;
 	}
 	
-	public Passenger findByFlight(Connection conn, String flight) {
-		Passenger pass = null;
+	public List<Passenger> findByFlight(Connection conn, String flight) {
+		List<Passenger> passengers = new ArrayList();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -69,14 +69,14 @@ public class PassengerDAO {
 			pstmt.setString(1, flight);
 			rset = pstmt.executeQuery();
 			
-			if(rset.next()) {
-				pass = new Passenger(rset.getInt("PASS_ID")
+			while(rset.next()) {
+				passengers.add(new Passenger(rset.getInt("PASS_ID")
 				                    ,rset.getString("PASS_NAME")
 				                    ,rset.getString("PASS_NO")
 				                    ,rset.getString("PASS_COUNTRY")
 				                    ,rset.getString("FLIGHT")
 				                    ,rset.getString("PHONE")
-				                    ,rset.getString("SEAT"));
+				                    ,rset.getString("SEAT")));
 			}
 			
 		} catch (SQLException e) {
@@ -89,7 +89,7 @@ public class PassengerDAO {
 		
 		
 		
-		return pass;
+		return passengers;
 	}
 	
 	public List<Passenger> findByKeyword(Connection conn, String keyword){
@@ -165,6 +165,25 @@ public class PassengerDAO {
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int delete(Connection conn, int passId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("delete");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, passId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(pstmt);
