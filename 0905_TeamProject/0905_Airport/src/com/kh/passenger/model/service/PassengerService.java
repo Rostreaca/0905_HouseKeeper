@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.kh.passenger.model.dao.PassengerDAO;
+import com.kh.passenger.model.dto.PassengerDTO;
 import com.kh.passenger.model.vo.Passenger;
 
 public class PassengerService {
@@ -39,6 +40,14 @@ public class PassengerService {
 		close(conn);
 		
 		return passengers;
+	}
+	
+	public int save(PassengerDTO pd) {
+		int result = new PassengerDAO().save(conn,pd);
+		commit(conn);
+		close(conn);
+		
+		return result;
 	}
 	
 }

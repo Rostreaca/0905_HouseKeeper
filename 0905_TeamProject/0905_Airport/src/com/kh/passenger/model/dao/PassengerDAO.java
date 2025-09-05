@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.common.JDBCTemplate;
+import com.kh.passenger.model.dto.PassengerDTO;
 import com.kh.passenger.model.vo.Passenger;
 
 public class PassengerDAO {
@@ -123,5 +124,30 @@ public class PassengerDAO {
 		
 		
 		return passengers;
+	}
+	
+	public int save(Connection conn, PassengerDTO pd) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("save");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pd.getPassName());
+			pstmt.setString(2, pd.getPassNo());
+			pstmt.setString(3, pd.getPassCountry());
+			pstmt.setString(4, pd.getFlight());
+			pstmt.setString(5, pd.getPhone());
+			pstmt.setString(6, pd.getSeat());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 }

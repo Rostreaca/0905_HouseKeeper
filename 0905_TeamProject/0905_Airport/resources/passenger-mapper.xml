@@ -56,4 +56,29 @@ SELECT
 
 </entry>
 
+<entry key="save">
+INSERT
+  INTO
+       TB_PASSENGER
+       (
+       PASS_ID
+     , PASS_NAME
+     , PASS_NO
+     , PASS_COUNTRY
+     , FLIGHT
+     , PHONE 
+     , SEAT
+       )
+VALUES
+       (
+       SEQ_PASS.NEXTVAL
+     , ?
+     , ?
+     , ?
+     , ?
+     , ?
+     , ?
+       )
+</entry>
+
 </properties>

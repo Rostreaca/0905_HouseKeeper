@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.kh.passenger.controller.PassengerController;
+import com.kh.passenger.model.dto.PassengerDTO;
 import com.kh.passenger.model.vo.Passenger;
 
 public class PassengerView {
@@ -102,6 +103,31 @@ public class PassengerView {
 			System.out.println("조회 결과 없음");
 		}
 		
+	}
+	private void save() {
+		System.out.println("승객을 추가합니다.");
+		System.out.print("이름 : ");
+		String passName = sc.nextLine();
+		System.out.print("주민등록번호 : ");
+		String passNo = sc.nextLine();
+		System.out.print("국적 : ");
+		String passCountry = sc.nextLine();
+		System.out.print("항공편 : ");
+		String flight = sc.nextLine();
+		System.out.print("전화번호 : ");
+		String phone = sc.nextLine();
+		System.out.print("좌석번호 : ");
+		String seat = sc.nextLine();		
+		
+		PassengerDTO pd = new PassengerDTO(passName,passNo,passCountry,flight,phone,seat);
+		
+		int result = pc.save(pd);
+		
+		if(result > 0) {
+			System.out.println("추가에 성공하였습니다!");
+		} else {
+			System.out.println("※추가 실패※");
+		}
 	}
 	
 }
