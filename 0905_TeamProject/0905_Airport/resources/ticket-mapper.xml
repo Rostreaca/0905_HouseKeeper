@@ -50,13 +50,13 @@ SELECT
      , GATE
      , DESTINATION
   FROM 
- 	   TB_TICKET 
+ 	   TB_TICKET T
   JOIN 
   	   TB_PASSENGER	USING (FLIGHT)
  WHERE
 	   PASS_NAME = ?
    AND
-   	   CANCLED_YN = 'N'
+   	   T.CANCLED_YN = 'N'
  </entry>
 
 
