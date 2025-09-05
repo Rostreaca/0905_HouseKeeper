@@ -2,4 +2,32 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment>Ticket SQL for DBMS</comment>
+<entry key="insertTicket">
+INSERT 
+  INTO 
+  	   TB_TICKET
+  	   (
+  	   FLIGHT
+  	 , DEPARTURE_DATE
+  	 , BOARDING_TIME
+  	 , GATE
+  	 , DESTINATION
+  	   )
+VALUES 
+	   (
+	   ?
+	 , ?
+	 , ?
+	 , ?
+	 , ? 
+	   )
+ </entry>
+
+
+
+
+
+
+
+
 </properties>

@@ -1,10 +1,15 @@
 package com.kh.ticket.view;
 
+import java.sql.Date;
+import java.util.List;
 import java.util.Scanner;
+
+import com.kh.ticket.controller.TicketController;
+import com.kh.ticket.model.vo.Ticket;
 
 public class TicketView {
 	private Scanner sc = new Scanner(System.in);
-
+	private TicketController tc = new TicketController();
 	
 	
 	public void mainMenu() {
@@ -25,9 +30,9 @@ public class TicketView {
 			switch(menuNo) {
 			case 1: insertTicket(); break;
 			case 2: findAll(); break;
-			case 3: findByName(); break;
-			case 4: ticketUpdate(); break;
-			case 5: ticketDelete(); break;
+			case 3: /*findByName();*/ break;
+			case 4: /*ticketUpdate();*/ break;
+			case 5: /*ticketDelete();*/ break;
 			case 9: System.out.println("프로그램 종료합니다."); return;
 			}
 		}
@@ -39,20 +44,47 @@ public class TicketView {
 		System.out.println("항공편을 입력해주세요. > ");
 		String flight = sc.nextLine();
 		System.out.println("출발날짜를 입력해주세요. > ");
-		String departureDate = sc.nextLine();
+		Date departureDate = Date.valueOf(sc.nextLine());
 		System.out.println("탑승시간을 입력해주세요. > ");
 		String boardingTime = sc.nextLine();
-		System.out.println("게이트번호를 입력해주세요. > ");
+		System.out.println("게이트를 입력해주세요. > ");
 		String gate = sc.nextLine();
 		System.out.println("목적지을 입력해주세요. > ");
 		String destination = sc.nextLine();
 		
+		int result = tc.insertTicket(flight, departureDate, boardingTime, gate, destination);
+
+		if(result > 0) {
+			System.out.println("회원 가입에 성공했습니다.");
+		} else {
+			System.out.println("회원 가입에 실패했습니다.");
+		}
+	}
 		
+	public void findAll() {
+		
+		System.out.println("\n회원 전체 조회");
+		
+		List<Ticket> tickets = tc.findAll();
+		
+		System.out.println("\n조회된 총 회원수는 " + tickets.size() + "명 입니다.");
+		if(tickets.isEmpty()) {
+			System.out.println("조회 결과가 존재하지 않습니다.");
+		} else {
+			
+			for(Ticket ticket : tickets) {
+				System.out.println("==============================");
+				System.out.println(ticket.getFlight() + "의 정보");
+				System.out.print("출발날짜 : " + ticket.getDepartureDate() + ", ");
+				System.out.print("탑승시간 : " + ticket.getBoardingTime() + ", ");
+				System.out.print("게이트 : " + ticket.getGate() + ", ");
+				System.out.print("목적지 : " + ticket.getDestination() + ", ");
+				System.out.println();
+			}
+		}
 		
 		
 	}
-		
-		
 	
 	
 	
