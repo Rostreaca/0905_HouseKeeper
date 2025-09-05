@@ -12,6 +12,7 @@ import java.util.Properties;
 
 import com.kh.common.JDBCTemplate;
 import com.kh.ticket.model.dto.TicketDTO;
+import com.kh.ticket.model.dto.TimeDTO;
 import com.kh.ticket.model.vo.Ticket;
 
 public class TicketDAO {
@@ -109,7 +110,26 @@ public class TicketDAO {
 			JDBCTemplate.close(pstmt);
 		}
 		return ticketDto;
+	}
+	
+	public int timeUpdate(Connection conn, TimeDTO td) {
+		int result = 0;
+		PreparedStatement pstmt = null;
 		
+		String update = prop.getProperty("timeUpdate");
+		
+		try {
+			pstmt = conn.prepareStatement(update);
+			pstmt.setString(1, td.getNewTime());
+			pstmt.setString(2, td.getFlight());
+			pstmt.setString(3, td.getBoardingTime());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 		
 		
 	}

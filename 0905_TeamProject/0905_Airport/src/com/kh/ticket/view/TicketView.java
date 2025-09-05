@@ -32,7 +32,7 @@ public class TicketView {
 			case 1: insertTicket(); break;
 			case 2: findAll(); break;
 			case 3: findByName(); break;
-			case 4: /*ticketUpdate();*/ break;
+			case 4: timeUpdate(); break;
 			case 5: /*ticketDelete();*/ break;
 			case 9: System.out.println("프로그램 종료합니다."); return;
 			}
@@ -105,8 +105,24 @@ public class TicketView {
 		} else {
 			System.out.println("존재하지 않는 항공편 입니다.");
 		}
-		
 	}
 	
-	
+	public void timeUpdate() {
+		
+		System.out.println("\n탑승시간 수정 서비스입니다.");
+		System.out.print("항공편을 입력해주세요. > ");
+		String flight = sc.nextLine();
+		System.out.print("탑승시간을 입력해주세요. > ");
+		String boardingTime = sc.nextLine();
+		System.out.print("바꿀 시간을 입력해주세요. > ");
+		String newTime = sc.nextLine();
+		
+		int result = tc.timeUpdate(flight, boardingTime, newTime);
+		
+		if(result > 0) {
+			System.out.println("탑승시간 변경에 성공했습니다.");
+		} else {
+			System.out.println("잘못된 탑승시간입니다.");
+		}
+	}
 }

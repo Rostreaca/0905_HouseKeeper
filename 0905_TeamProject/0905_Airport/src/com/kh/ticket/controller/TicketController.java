@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.ticket.model.dto.TicketDTO;
+import com.kh.ticket.model.dto.TimeDTO;
 import com.kh.ticket.model.service.TicketService;
 import com.kh.ticket.model.vo.Ticket;
 
@@ -33,6 +34,16 @@ public class TicketController {
 		TicketDTO ticket = new TicketService().findByName(passName);
 		
 		return ticket;
+	}
+	
+	public int timeUpdate(String flight, String boardingTime, String newTime) {
+		
+		TimeDTO td = new TimeDTO(flight, boardingTime, newTime);
+		
+		int result = new TicketService().timeUpdate(td);
+		
+		return result;
+		
 	}
 	
 	

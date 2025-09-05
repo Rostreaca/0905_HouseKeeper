@@ -56,8 +56,15 @@ SELECT
  </entry>
 
 
- <entry key="">
-
+ <entry key="timeUpdate">
+UPDATE 
+	   TB_TICKET 
+   SET 
+   	   BOARDING_TIME = ? 
+ WHERE
+   	   FLIGHT = ? 
+   AND
+   	   BOARDING_TIME = ?
  </entry>
  
  

@@ -23,7 +23,6 @@ public class JDBCTemplate {
 	public static Connection getConnection() {
 		
 		Properties prop = new Properties();
-		
 		try {
 			prop.load(new FileInputStream("resources/driver.properties"));
 			Connection conn = DriverManager.getConnection(prop.getProperty("URL")
