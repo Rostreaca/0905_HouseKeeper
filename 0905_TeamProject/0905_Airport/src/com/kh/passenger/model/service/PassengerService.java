@@ -24,4 +24,13 @@ public class PassengerService {
 		
 		return passengers;
 	}
+	
+	public Passenger findByFlight(String flight) {
+		Passenger pass = new PassengerDAO().findByFlight(conn,flight);
+		
+		close(conn);
+		
+		return pass;
+	}
+	
 }

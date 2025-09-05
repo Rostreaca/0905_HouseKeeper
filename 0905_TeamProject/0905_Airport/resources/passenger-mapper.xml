@@ -18,5 +18,23 @@ SELECT
     BY
        PASS_ID DESC
 </entry>
+<entry key="findByFlight">
+SELECT
+       PASS_ID
+     , PASS_NAME
+     , PASS_NO
+     , PASS_COUNTRY
+     , FLIGHT
+     , PHONE
+     , SEAT
+  FROM
+       TB_PASSENGER
+ WHERE
+       FLIGHT = ?
+ ORDER
+    BY
+       PASS_ID DESC
+
+</entry>
 
 </properties>

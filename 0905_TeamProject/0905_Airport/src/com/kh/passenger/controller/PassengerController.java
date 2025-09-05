@@ -15,4 +15,11 @@ public class PassengerController {
 		
 	}
 	
+	public Passenger findByFlight(String flight) {
+		
+		Passenger pass = new PassengerService().findByFlight(flight);
+		
+		return pass;
+	}
+	
 }

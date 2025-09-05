@@ -20,6 +20,7 @@ public class PassengerView {
 			System.out.println("4. 승객 추가");
 			System.out.println("5. 승객 정보 변경");
 			System.out.println("6. 승객 취소");
+			System.out.println("7. 티켓 정보 보기");
 			System.out.println("9.프로그램 종료");
 			System.out.print("메뉴 번호 > ");
 			int menuNo = sc.nextInt();
@@ -27,7 +28,7 @@ public class PassengerView {
 			
 			switch(menuNo){
 				case 1: findAll();break;
-				case 2: break;
+				case 2: findByFlight();break;
 				case 3: break;
 				case 4: break;
 				case 5: break;
@@ -53,6 +54,28 @@ public class PassengerView {
 				System.out.print(" 좌석번호 : "+pass.getSeat());
 				System.out.println();
 			}
+		} else {
+			System.out.println("조회 결과 없음");
+		}
+		
+		
+	}
+	
+	private void findByFlight() {
+		System.out.println("항공편으로 승객을 조회합니다.");
+		System.out.print("조회할 항공편을 입력해주십시오 > ");
+		String flight = sc.nextLine();
+		
+		Passenger pass = pc.findByFlight(flight);
+		
+		if(pass != null) {
+			System.out.println(flight+"항공편 승객입니다.");
+			System.out.println(" 승객 번호 : "+pass.getPassId());
+			System.out.println(" 이름 : "+pass.getPassName());
+			System.out.println(" 주민등록번호 : "+pass.getPassNo());
+			System.out.println(" 국적 : "+pass.getPassCountry());
+			System.out.println(" 전화번호 : "+pass.getPhone());
+			System.out.println(" 좌석번호 : "+pass.getSeat());
 		} else {
 			System.out.println("조회 결과 없음");
 		}

@@ -55,4 +55,39 @@ public class PassengerDAO {
 		
 		return passengers;
 	}
+	
+	public Passenger findByFlight(Connection conn, String flight) {
+		Passenger pass = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("findByFlight");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, flight);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				pass = new Passenger(rset.getInt("PASS_ID")
+				                    ,rset.getString("PASS_NAME")
+				                    ,rset.getString("PASS_NO")
+				                    ,rset.getString("PASS_COUNTRY")
+				                    ,rset.getString("FLIGHT")
+				                    ,rset.getString("PHONE")
+				                    ,rset.getString("SEAT"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		
+		
+		return pass;
+	}
 }
