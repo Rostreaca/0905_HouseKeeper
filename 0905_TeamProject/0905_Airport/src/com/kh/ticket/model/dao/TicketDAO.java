@@ -130,7 +130,22 @@ public class TicketDAO {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
-		
+	}
+	
+	public int ticketDelete(Connection conn, String flight) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String delete = prop.getProperty("ticketDelete");
+		try {
+			pstmt = conn.prepareStatement(delete);
+			pstmt.setString(1, flight);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 		
 	}
 	

@@ -31,7 +31,9 @@ SELECT
   	   , GATE
   	   , DESTINATION 
     FROM 
-    	 TB_TICKET 
+    	 TB_TICKET
+   WHERE
+         CANCLED_YN = 'N' 
    ORDER 
       BY 
       	 DEPARTURE_DATE
@@ -53,6 +55,8 @@ SELECT
   	   TB_PASSENGER	USING (FLIGHT)
  WHERE
 	   PASS_NAME = ?
+   AND
+   	   CANCLED_YN = 'N'
  </entry>
 
 
@@ -68,8 +72,13 @@ UPDATE
  </entry>
  
  
- <entry key="">
-
+ <entry key="ticketDelete">
+UPDATE 
+	   TB_TICKET 
+   SET 
+   	   CANCLED_YN = 'Y'
+ WHERE
+   	   FLIGHT = ? 
  </entry>
 
 	   

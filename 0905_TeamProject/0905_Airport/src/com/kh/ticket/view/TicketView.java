@@ -33,13 +33,13 @@ public class TicketView {
 			case 2: findAll(); break;
 			case 3: findByName(); break;
 			case 4: timeUpdate(); break;
-			case 5: /*ticketDelete();*/ break;
-			case 9: System.out.println("프로그램 종료합니다."); return;
+			case 5: ticketDelete(); break;
+			case 9: System.out.println("메인메뉴로 돌아갑니다."); return;
 			}
 		}
 	}
 
-	public void insertTicket() {
+	private void insertTicket() {
 		System.out.println("항공편 추가 서비스입니다.");
 		
 		System.out.println("항공편을 입력해주세요. > ");
@@ -62,13 +62,13 @@ public class TicketView {
 		}
 	}
 		
-	public void findAll() {
+	private void findAll() {
 		
-		System.out.println("\n회원 전체 조회");
+		System.out.println("\n항공편 전체 조회");
 		
 		List<Ticket> tickets = tc.findAll();
 		
-		System.out.println("\n조회된 총 회원수는 " + tickets.size() + "명 입니다.");
+		System.out.println("\n조회된 총 항공편은 " + tickets.size() + "개 입니다.");
 		if(tickets.isEmpty()) {
 			System.out.println("조회 결과가 존재하지 않습니다.");
 		} else {
@@ -79,13 +79,13 @@ public class TicketView {
 				System.out.print("출발날짜 : " + ticket.getDepartureDate() + ", ");
 				System.out.print("탑승시간 : " + ticket.getBoardingTime() + ", ");
 				System.out.print("게이트 : " + ticket.getGate() + ", ");
-				System.out.print("목적지 : " + ticket.getDestination() + ", ");
+				System.out.print("목적지 : " + ticket.getDestination());
 				System.out.println();
 			}
 		}
 	}
 	
-	public void findByName() {
+	private void findByName() {
 		System.out.println("\n성함으로 항공편 검색 서비스입니다. ");
 		System.out.print("성함을 입력해주세요. > ");
 		String passName = sc.nextLine();
@@ -107,7 +107,7 @@ public class TicketView {
 		}
 	}
 	
-	public void timeUpdate() {
+	private void timeUpdate() {
 		
 		System.out.println("\n탑승시간 수정 서비스입니다.");
 		System.out.print("항공편을 입력해주세요. > ");
@@ -125,4 +125,24 @@ public class TicketView {
 			System.out.println("잘못된 탑승시간입니다.");
 		}
 	}
+	
+	private void ticketDelete() {
+		
+		System.out.println("항공편 삭제 서비스 입니다.");
+		System.out.print("항공편을 입력해 주세요. > ");
+		String flight = sc.nextLine();
+		
+		int result = tc.ticketDelete(flight);
+		
+		if(result > 0) {
+			System.out.println("성공했습니다.");
+		}else {
+			System.out.println("실패했습니다.");
+		}
+		
+		
+		
+		
+	}
+	
 }

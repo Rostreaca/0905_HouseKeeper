@@ -55,6 +55,18 @@ public class TicketService {
 		}
 		close(conn);
 		return result;
+	}
+	
+	public int ticketDelete(String flight) {
+		int result = new TicketDAO().ticketDelete(conn, flight);
+		if(result > 0) {
+			commit(conn);
+		}
+		close(conn);
+		return result;
+		
+		
+		
 		
 	}
 	

@@ -43,8 +43,15 @@ public class TicketController {
 		int result = new TicketService().timeUpdate(td);
 		
 		return result;
-		
 	}
 	
-	
+	public int ticketDelete(String flight) {
+		
+		Ticket ticket = new Ticket();
+		ticket.setFlight(flight);
+		int result = new TicketService().ticketDelete(flight);
+		
+		return result;
+		
+	}
 }
