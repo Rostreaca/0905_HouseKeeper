@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.common.JDBCTemplate;
+import com.kh.ticket.model.dto.TicketDTO;
 import com.kh.ticket.model.vo.Ticket;
 
 public class TicketDAO {
@@ -58,6 +59,7 @@ public class TicketDAO {
 		ResultSet rset = null;
 		
 		String select = prop.getProperty("findAll");
+		
 		try {
 			pstmt = conn.prepareStatement(select);
 			rset = pstmt.executeQuery();
@@ -77,6 +79,38 @@ public class TicketDAO {
 			JDBCTemplate.close(pstmt);
 		}
 		return tickets;
+	}
+	
+	public TicketDTO findByName(Connection conn, String passName) {
+		
+		TicketDTO ticketDto = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String select = prop.getProperty("findByName");
+		
+		try {
+			pstmt = conn.prepareStatement(select);
+			pstmt.setString(1, passName);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				ticketDto = new TicketDTO(rset.getString("FLIGHT")
+								  , rset.getString("SEAT")
+								  , rset.getDate("DEPARTURE_DATE")
+								  , rset.getString("BOARDING_TIME")
+								  , rset.getString("GATE")
+								  , rset.getString("DESTINATION"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return ticketDto;
+		
+		
 		
 	}
 	

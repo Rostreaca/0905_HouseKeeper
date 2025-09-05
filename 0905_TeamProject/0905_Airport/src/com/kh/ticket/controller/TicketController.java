@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Properties;
 
+import com.kh.ticket.model.dto.TicketDTO;
 import com.kh.ticket.model.service.TicketService;
 import com.kh.ticket.model.vo.Ticket;
 
@@ -25,6 +26,13 @@ public class TicketController {
 		List<Ticket> tickets = new TicketService().findAll();
 		
 		return tickets;
+	}
+	
+	public TicketDTO findByName(String passName) {
+		
+		TicketDTO ticket = new TicketService().findByName(passName);
+		
+		return ticket;
 	}
 	
 	

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.kh.ticket.controller.TicketController;
+import com.kh.ticket.model.dto.TicketDTO;
 import com.kh.ticket.model.vo.Ticket;
 
 public class TicketView {
@@ -30,7 +31,7 @@ public class TicketView {
 			switch(menuNo) {
 			case 1: insertTicket(); break;
 			case 2: findAll(); break;
-			case 3: /*findByName();*/ break;
+			case 3: findByName(); break;
 			case 4: /*ticketUpdate();*/ break;
 			case 5: /*ticketDelete();*/ break;
 			case 9: System.out.println("프로그램 종료합니다."); return;
@@ -82,11 +83,30 @@ public class TicketView {
 				System.out.println();
 			}
 		}
-		
-		
 	}
 	
-	
+	public void findByName() {
+		System.out.println("\n성함으로 항공편 검색 서비스입니다. ");
+		System.out.print("성함을 입력해주세요. > ");
+		String passName = sc.nextLine();
+		
+		TicketDTO ticketDto = tc.findByName(passName);
+		
+		if(ticketDto != null) {
+			System.out.println(passName + "님의 항공편 검색 결과입니다.");
+			System.out.println("====================================");
+			System.out.print("항공편 : " + ticketDto.getFlight() + ", ");
+			System.out.print("좌석번호 : " + ticketDto.getSeat() + ", ");
+			System.out.print("출발날짜 : " + ticketDto.getDepartureDate() + ", ");
+			System.out.print("탑승시간 : " + ticketDto.getBoardingTime() + ", ");
+			System.out.print("게이트 : " + ticketDto.getGate() + ", ");
+			System.out.print("목적지 : " + ticketDto.getDestination());
+			System.out.println();
+		} else {
+			System.out.println("존재하지 않는 항공편 입니다.");
+		}
+		
+	}
 	
 	
 }

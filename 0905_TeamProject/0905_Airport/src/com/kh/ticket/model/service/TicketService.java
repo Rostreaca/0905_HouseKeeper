@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Function;
 
 import com.kh.ticket.model.dao.TicketDAO;
+import com.kh.ticket.model.dto.TicketDTO;
 import com.kh.ticket.model.vo.Ticket;
 
 import static com.kh.common.JDBCTemplate.*;
@@ -37,6 +38,10 @@ public class TicketService {
 	
 	public List<Ticket> findAll() {
 		return executeQuery(new TicketDAO()::findAll);
+	}
+	
+	public TicketDTO findByName(String passName) {
+		return executeQuery(conn -> new TicketDAO().findByName(conn, passName));
 	}
 	
 }

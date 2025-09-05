@@ -38,13 +38,35 @@ SELECT
  </entry>
 
       	 
-<entry key="">
-
+<entry key="findByName">
+SELECT 
+	   FLIGHT
+	 , PASS_NAME
+	 , SEAT
+     , DEPARTURE_DATE
+     , BOARDING_TIME
+     , GATE
+     , DESTINATION
+  FROM 
+ 	   TB_TICKET 
+  JOIN 
+  	   TB_PASSENGER	USING (FLIGHT)
+ WHERE
+	   PASS_NAME = ?
  </entry>
 
 
+ <entry key="">
 
+ </entry>
+ 
+ 
+ <entry key="">
 
+ </entry>
 
-
+	   
+	   
+	   
+	   
 </properties>
