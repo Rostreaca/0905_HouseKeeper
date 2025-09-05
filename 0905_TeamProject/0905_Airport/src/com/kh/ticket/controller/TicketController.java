@@ -1,6 +1,7 @@
 package com.kh.ticket.controller;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Properties;
 
 import com.kh.ticket.model.service.TicketService;
@@ -19,7 +20,12 @@ public class TicketController {
 		return result;
 	}
 	
-	
+	public List<Ticket> findAll() {
+		
+		List<Ticket> tickets = new TicketService().findAll();
+		
+		return tickets;
+	}
 	
 	
 }

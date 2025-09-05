@@ -1,6 +1,8 @@
 package com.kh.ticket.model.service;
 
 import java.sql.Connection;
+import java.util.List;
+import java.util.function.Function;
 
 import com.kh.ticket.model.dao.TicketDAO;
 import com.kh.ticket.model.vo.Ticket;
@@ -22,8 +24,19 @@ public class TicketService {
 		}
 		close(conn);
 		return result;
-		
-		
+	}
+	
+	private <T> T executeQuery(Function<Connection, T> daoFunction) {
+		Connection conn = null;
+		T result = null;
+		conn = getConnection();
+		result = daoFunction.apply(conn);
+		close(conn);
+		return result;
+	}
+	
+	public List<Ticket> findAll() {
+		return executeQuery(new TicketDAO()::findAll);
 	}
 	
 }

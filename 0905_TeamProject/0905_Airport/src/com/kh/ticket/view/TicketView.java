@@ -18,8 +18,8 @@ public class TicketView {
 			System.out.println("티켓 정보 조회 서비스입니다!");
 			System.out.println("\n===========================");
 			System.out.println("1. 항공편 추가하기");
-			System.out.println("2. 티켓 전부 조회하기");
-			System.out.println("3. 이름으로 티켓 하기");
+			System.out.println("2. 항공편 전부 조회하기");
+			System.out.println("3. 이름으로 티켓 조회하기");
 			System.out.println("4. 출발시간 변경하기");
 			System.out.println("5. 항공편 취소하기");
 			System.out.println("9. 메인 메뉴로 돌아가기");
