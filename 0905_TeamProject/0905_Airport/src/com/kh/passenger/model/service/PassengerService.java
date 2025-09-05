@@ -33,4 +33,12 @@ public class PassengerService {
 		return pass;
 	}
 	
+	public List<Passenger> findByKeyword(String keyword){
+		List<Passenger> passengers = new PassengerDAO().findByKeyword(conn, keyword);
+		
+		close(conn);
+		
+		return passengers;
+	}
+	
 }

@@ -13,8 +13,6 @@ public class PassengerRun {
 		
 		pv.mainMenu();
 		
-		
-		
 	}
 	
 }

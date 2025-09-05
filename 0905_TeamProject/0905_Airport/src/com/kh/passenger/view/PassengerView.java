@@ -29,8 +29,8 @@ public class PassengerView {
 			switch(menuNo){
 				case 1: findAll();break;
 				case 2: findByFlight();break;
-				case 3: break;
-				case 4: break;
+				case 3: findByKeyword();break;
+				case 4: save();break;
 				case 5: break;
 				case 6: break;
 				case 9: System.out.println("프로그램 종료");return;
@@ -81,4 +81,27 @@ public class PassengerView {
 		}
 		
 	}
+	private void findByKeyword() {
+		System.out.print("찾을 승객의 이름 키워드를 입력 > ");
+		String keyword = sc.nextLine();
+		
+		List<Passenger> passengers = pc.findByKeyword(keyword);
+		
+		if(!passengers.isEmpty()) {
+			for(Passenger pass : passengers) {
+				System.out.print("승객 번호 : "+pass.getPassId());
+				System.out.print(" 이름 : "+pass.getPassName());
+				System.out.print(" 주민등록번호 : "+pass.getPassNo());
+				System.out.print(" 국적 : "+pass.getPassCountry());
+				System.out.print(" 항공편 : "+pass.getFlight());
+				System.out.print(" 전화번호 : "+pass.getPhone());
+				System.out.print(" 좌석번호 : "+pass.getSeat());
+				System.out.println();
+			}
+		} else {
+			System.out.println("조회 결과 없음");
+		}
+		
+	}
+	
 }

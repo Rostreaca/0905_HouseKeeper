@@ -90,4 +90,38 @@ public class PassengerDAO {
 		
 		return pass;
 	}
+	
+	public List<Passenger> findByKeyword(Connection conn, String keyword){
+		List<Passenger> passengers = new ArrayList();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("findByKeyword");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, keyword);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				passengers.add(new Passenger(rset.getInt("PASS_ID")
+						                    ,rset.getString("PASS_NAME")
+						                    ,rset.getString("PASS_NO")
+						                    ,rset.getString("PASS_COUNTRY")
+						                    ,rset.getString("FLIGHT")
+						                    ,rset.getString("PHONE")
+						                    ,rset.getString("SEAT")));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		
+		return passengers;
+	}
 }

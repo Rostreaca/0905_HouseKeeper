@@ -22,4 +22,11 @@ public class PassengerController {
 		return pass;
 	}
 	
+	public List<Passenger> findByKeyword(String keyword){
+		
+		List<Passenger> passengers = new PassengerService().findByKeyword(keyword);
+		
+		return passengers;
+	}
+	
 }
