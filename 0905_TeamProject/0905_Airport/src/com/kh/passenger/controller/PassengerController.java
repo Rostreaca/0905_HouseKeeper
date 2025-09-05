@@ -36,5 +36,10 @@ public class PassengerController {
 		
 		return result;
 	}
+	public int update(PassengerDTO pd) {
+		int result = new PassengerService().update(pd);
+		
+		return result;
+	}
 	
 }

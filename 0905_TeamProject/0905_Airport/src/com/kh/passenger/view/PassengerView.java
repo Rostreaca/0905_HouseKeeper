@@ -32,8 +32,9 @@ public class PassengerView {
 				case 2: findByFlight();break;
 				case 3: findByKeyword();break;
 				case 4: save();break;
-				case 5: break;
+				case 5: update();break;
 				case 6: break;
+				case 7: break;
 				case 9: System.out.println("프로그램 종료");return;
 				default: System.out.println("잘못된 번호 입력");
 			}
@@ -128,6 +129,27 @@ public class PassengerView {
 		} else {
 			System.out.println("※추가 실패※");
 		}
+	}
+	
+	private void update() {
+		System.out.println("승객의 정보를 변경합니다.");
+		System.out.print("정보를 변경할 승객의 이름을 입력해주십시오 : ");
+		String passName = sc.nextLine();
+		System.out.print("바꿀 항공편을 입력해주십시오 : ");
+		String flight = sc.nextLine();
+		System.out.print("바꿀 좌석번호를 입력해주십시오 : ");
+		String seat = sc.nextLine();
+		
+		PassengerDTO pd = new PassengerDTO(passName, flight, seat);
+		
+		int result = pc.update(pd);
+		
+		if(result > 0) {
+			System.out.println("정보 변경에 성공했습니다.");
+		} else {
+			System.out.println("정보 변경에 실패했습니다");
+		}
+		
 	}
 	
 }

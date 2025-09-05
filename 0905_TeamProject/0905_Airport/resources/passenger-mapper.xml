@@ -80,5 +80,14 @@ VALUES
      , ?
        )
 </entry>
+<entry key="update">
+UPDATE
+       TB_PASSENGER
+   SET
+       FLIGHT = ?
+     , SEAT = ?
+ WHERE
+       PASS_NAME = ?
 
+</entry>
 </properties>

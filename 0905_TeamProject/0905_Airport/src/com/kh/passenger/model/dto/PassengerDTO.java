@@ -12,6 +12,13 @@ public class PassengerDTO {
 		super();
 	}
 	
+	public PassengerDTO(String passName, String flight, String seat) {
+		super();
+		this.passName = passName;
+		this.flight = flight;
+		this.seat = seat;
+	}
+
 	public PassengerDTO(String passName, String passNo, String passCountry, String flight, String phone, String seat) {
 		super();
 		this.passName = passName;

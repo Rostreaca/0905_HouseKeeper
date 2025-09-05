@@ -50,4 +50,11 @@ public class PassengerService {
 		return result;
 	}
 	
+	public int update(PassengerDTO pd) {
+		int result = new PassengerDAO().update(conn,pd);
+		commit(conn);
+		close(conn);
+		return result;
+	}
+	
 }

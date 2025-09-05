@@ -150,4 +150,27 @@ public class PassengerDAO {
 		
 		return result;
 	}
+	
+	public int update(Connection conn, PassengerDTO pd) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("update");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pd.getFlight());
+			pstmt.setString(2, pd.getSeat());
+			pstmt.setString(3, pd.getPassName());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+	
 }
